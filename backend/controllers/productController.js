@@ -1,27 +1,33 @@
-const Product=require("../models/productModel")
+const ApiFeatures = require("../Utils/apiFeature");
+const Product = require("../models/productModel")
 
 
-exports.getAllProducts=async(req,res)=>{
-    
-   let data= await Product.find();
-    res.status(200).json(data);
+exports.getAllProducts = async (req, res) => {
+
+    // let data = await Product.find();
+   const apiFeatures= new ApiFeatures(Product.find(), req.query)
+ apiFeatures.search();
+   const product=await apiFeatures.query
+   console.log("find data------->>>>>>",product);
+
+    res.status(200).json({product});
 }
 
 
-exports.createProduct=async(req,res)=>{
-    try{
-        let product=await Product.create(req.body);
+exports.createProduct = async (req, res) => {
+    try {
+        let product = await Product.create(req.body);
         res.status(201).json({
-            sucess:true,
+            sucess: true,
             product
         })
-    }catch(error){
-        console.error("er---------",error)
+    } catch (error) {
+        console.error("er---------", error)
     }
-  
+
 }
 exports.updateProduct = async (req, res) => {
-    let data = await Product.findById(req.params);    
+    let data = await Product.findById(req.params);
     if (!data) {
         return res.status(501).json({
             sucess: false,
@@ -33,7 +39,7 @@ exports.updateProduct = async (req, res) => {
     data = await Product.findByIdAndUpdate(req.params, req.body)
 
     res.status(200).json({
-       data,
+        data,
         sucess: true
     });
 }
@@ -48,12 +54,12 @@ exports.deleteProduct = async (req, res) => {
             product
         })
     }
-     product =await product.deleteOne(req.params);
+    product = await product.deleteOne(req.params);
 
     res.status(200).json({
-       product,
+        product,
         sucess: true,
-        messgae:"Product deleted"
+        messgae: "Product deleted"
     });
 }
 
