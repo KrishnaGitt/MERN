@@ -5,7 +5,7 @@ const Product = require("../models/productModel")
 exports.getAllProducts = async (req, res) => {
 
     // let data = await Product.find();
-   const apiFeatures= new ApiFeatures(Product.find(), req.query)
+   const apiFeatures= new ApiFeatures(Product, req.query)
  apiFeatures.search();
    const product=await apiFeatures.query
    console.log("find data------->>>>>>",product);
