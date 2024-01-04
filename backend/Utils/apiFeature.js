@@ -2,7 +2,7 @@ class ApiFeatures {
     constructor(query, queryStr) {
         this.query = query;
         this.queryStr = queryStr;
-        //console.log("-----------", this.query)
+        this.result=this.query;
     }
      search() {
         const keyword = this.queryStr.keyword ? {
@@ -11,9 +11,16 @@ class ApiFeatures {
                 $options: "i"
             }
         } : {};
-        console.log({ ...keyword })
-        this.query=  this.query.find({...keyword})
-        console.log("apifeature mai ", this.query)
+        this.result=  this.query.find({...keyword})
+    }
+    filter(){
+        let querycopy={...this.queryStr}
+        console.log("first",querycopy)
+        let removeField=["keyword","page","limit"]
+        removeField.forEach(element => delete querycopy[element]);
+        console.log("second",querycopy)
+        this.result=  this.query.find(querycopy)
+        console.log("3333333333333",this.query)
     }
 }
 

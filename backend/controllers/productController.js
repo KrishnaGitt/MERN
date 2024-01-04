@@ -7,10 +7,11 @@ exports.getAllProducts = async (req, res) => {
     // let data = await Product.find();
    const apiFeatures= new ApiFeatures(Product, req.query)
  apiFeatures.search();
-   const product=await apiFeatures.query
-   console.log("find data------->>>>>>",product);
-
-    res.status(200).json({product});
+ apiFeatures.filter();
+  apiFeatures.result.then((a)=>{
+    console.log("kkkkkkkkkkk",a);
+    res.status(200).json(a);
+  })
 }
 
 
