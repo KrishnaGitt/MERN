@@ -1,6 +1,7 @@
-const {mongoose,Schema}=require('./mongoose');
+const mongoose=require("mongoose");
+// const Schema=require("mongoose")
 
-const UserSchema=new Schema({
+const UserSchema=new mongoose.Schema({
 name:{
     type:String,
     required:[true,"Please enter your name"],
@@ -13,8 +14,13 @@ password:{
     maxLength:[30,"Name cannot be more then 30"],
     minLength:[2,"Name cannot be less then 2"]
 },
+email:{
+    type:String,
+    required:[true,"Please Enter Your Email"]
+  
+},
 avatar:{
-    Public_id:{
+    public_id:{
         type:String,
         required:true
     },
@@ -34,4 +40,4 @@ refreshToken:{
 })
 
 
-model.export =mongoose.model("User",UserSchema)
+module.exports =mongoose.model("User",UserSchema)
