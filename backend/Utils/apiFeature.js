@@ -26,11 +26,13 @@ class ApiFeatures {
     removeField.forEach((element) => delete querycopy[element]);
     let quertReg = JSON.stringify(querycopy);
     quertReg = quertReg.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
+    console.log("this is req",quertReg)
     this.query = this.query.find(JSON.parse(quertReg));
   }
-  pagination(skipPerPage) {
-    let currentPage = this.queryStr.page || 1;
-    let skip = skipPerPage * (currentPage - 1);
+  pagination(resultPerPage) {
+    let currentPage = Number(this.queryStr.page) || 1;
+    let skip = resultPerPage * (currentPage - 1);
+    this.query=this.query.limit(resultPerPage).skip(skip)
   }
 }
 
