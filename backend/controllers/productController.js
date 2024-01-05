@@ -3,13 +3,12 @@ const Product = require("../models/productModel")
 
 
 exports.getAllProducts = async (req, res) => {
-
+    const skipPerPage=5;
     // let data = await Product.find();
    const apiFeatures= new ApiFeatures(Product, req.query)
  apiFeatures.search();
- apiFeatures.filter();
-  apiFeatures.result.then((a)=>{
-    console.log("kkkkkkkkkkk",a);
+ apiFeatures.filter().pagination(skipPerPage);
+  apiFeatures.query.then((a)=>{
     res.status(200).json(a);
   })
 }
