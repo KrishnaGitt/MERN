@@ -41,7 +41,6 @@ exports.loginUser=async(req,res)=>{
     throw new errorHandler(400,"User doesnot exits with this username or password")
   }
   const passwordValidate=await user.comparePassword(password)
-  console.log("------------->>>>>>>>>",passwordValidate)
   if(!passwordValidate){
     throw new errorHandler(400,"Password is not correect")
   }
@@ -64,6 +63,4 @@ exports.logoutUser=async(req,res)=>{
     "user logged out"
    )
   )
-  
-  console.log("Logout function called")
 }

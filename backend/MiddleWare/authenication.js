@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const errorHandler = require("../Utils/errorHandler");
+const User=require("../models/userModel")
 
 exports.authenication=async(req,res,next)=>{
 
@@ -11,7 +12,16 @@ exports.authenication=async(req,res,next)=>{
    if(!decodedtoken){
     throw new errorHandler(404,"User is not allowed to do login related actvities")
    }
-    req.user=decodedtoken;
-    console.log("-------->>",decodedtoken);
+    req.user=await User.findById(decodedtoken);
+    console.log("-------->>",req.user);
     next();
+}
+
+exports.authenticateAdmin=(...role)=>{
+(req,res,next)=>{
+    if(!role.includes(req.user.role)){
+        throw new errorHandler(4002,"You are not admin")
+    }
+    next();
+}
 }

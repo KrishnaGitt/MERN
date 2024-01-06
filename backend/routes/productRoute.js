@@ -1,10 +1,10 @@
 const express=require("express");
 const{getAllProducts,createProduct,updateProduct,deleteProduct,getProducts}=require("../controllers/productController");
-
+const {authenication,authenticateAdmin}=require("../MiddleWare/authenication")
 const router=express.Router();
 // router.route("/products").get(getAllProducts);
 
-router.get("/products",getAllProducts)
+router.route("/products").get(getAllProducts)
 router.route("/products/new").post(createProduct)   
 router.route("/products/:_id").put(updateProduct)   
 router.route("/products/:_id").delete(deleteProduct) 
