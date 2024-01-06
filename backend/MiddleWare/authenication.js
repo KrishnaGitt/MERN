@@ -17,9 +17,9 @@ exports.authenication=async(req,res,next)=>{
     next();
 }
 
-exports.authenticateAdmin=(...role)=>{
-(req,res,next)=>{
-    if(!role.includes(req.user.role)){
+exports.authenticateAdmin=(...roles)=>{
+return (req,res,next)=>{
+    if(!roles.includes(req.user.role)){
         throw new errorHandler(4002,"You are not admin")
     }
     next();
