@@ -3,6 +3,7 @@ const errorHandler=require("../Utils/errorHandler")
 const responseHandler=require("../Utils/responseHandler")
 const cookie=require("cookie-parser")
 exports.registorUser= async(req,resp)=>{
+  console.log("insideregistor==========")
     const {name,email}=req.body
    
   try {
@@ -45,6 +46,8 @@ exports.loginUser=async(req,res)=>{
     throw new errorHandler(400,"Password is not correect")
   }
   const userExist=await User.findById(user._id).select("-password")
+  userExist.refreshToken=process.env.REFRESH_TOKEN_SECREAT;
+  await userExist.save({ validateBeforeSave: false })
   const acesstoken=userExist.generateAccessToken()
   res.cookie("accessToken",acesstoken).
   status(200).json(
@@ -52,4 +55,15 @@ exports.loginUser=async(req,res)=>{
   )
 }
 
-exports.logoutUser=async(req,res)=>{}
+exports.logoutUser=async(req,res)=>{
+  const decodedToken=req.user.id
+  res.status(200).
+  clearCookie("accessToken").json(
+   new responseHandler(
+    200,
+    "user logged out"
+   )
+  )
+  
+  console.log("Logout function called")
+}

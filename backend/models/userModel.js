@@ -49,7 +49,7 @@ if(!this.isModified("password")) return next();
 UserSchema.methods.generateAccessToken=function(){
   return jwt.sign(
     {
-        id:this._id
+        _id:this._id
    },
    process.env.ACCESS_TOKEN_SECREAT,
    {
