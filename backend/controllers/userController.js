@@ -96,3 +96,15 @@ try {
     await user.save({validateBeforeSave:false})
   }
 }
+
+exports.getUserDetails=async (req,res)=>{
+  console.log("USer details",req.user.id)
+  const user=await User.findById(req.user.id)
+  if(!user){
+    throw new errorHandler(404,"User is not found")
+  }
+
+  res.status(200).json(
+    new responseHandler(200,user,"Please check your profile")
+  )
+}

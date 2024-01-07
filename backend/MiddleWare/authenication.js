@@ -12,9 +12,7 @@ exports.authenication=async(req,res,next)=>{
    if(!decodedtoken){
     throw new errorHandler(404,"User is not allowed to do login related actvities")
    }
-   console.log("-------->>",decodedtoken);
     req.user=await User.findById(decodedtoken._id);
-    console.log("-------->>",req.user);
     next();
 }
 
