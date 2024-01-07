@@ -2,6 +2,7 @@ const User = require("../models/userModel")
 const errorHandler=require("../Utils/errorHandler")
 const responseHandler=require("../Utils/responseHandler")
 const cookie=require("cookie-parser")
+const sendEmail=require("../Utils/sendEmail")
 exports.registorUser= async(req,resp)=>{
   console.log("insideregistor==========")
     const {name,email}=req.body
@@ -63,4 +64,35 @@ exports.logoutUser=async(req,res)=>{
     "user logged out"
    )
   )
+}
+
+exports.forgotPassword=async (req,res)=>{
+  console.log("insdie forgot");
+  const {email}=req.body
+  const user=await User.findOne({email})
+if(!user){
+  throw new errorHandler(404,"Please entered the correct Email id to reset the password")
+}
+//Get Reset Password Token//saving in database
+const resetToken=user.getResetPasswordToken();
+await user.save({validateBeforeSave:false})
+ 
+//const resetPasswordUrl=`http://localhost/api/v1/password/reset/${resetToken}`
+const resetPasswordUrl=`${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`
+const message=`your password reset token is:-\n\n${resetPasswordUrl}\n\nIf you have not requested this please ignore`
+
+try {
+  await sendEmail({
+    email:user.email,
+    subject:"Ecommerce Password Recovery",
+    message
+  })
+  res.status(200).json(
+    new responseHandler(400,"secess","Email send sucessfully")
+  )
+} catch (error) {
+    user.resetPasswordToken=undefined
+    user.resetPasswordExpire=undefined
+    await user.save({validateBeforeSave:false})
+  }
 }

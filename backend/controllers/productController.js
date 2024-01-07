@@ -21,6 +21,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
     try {
+        req.body.user=req.user._id;
         let product = await Product.create(req.body);
         res.status(201).json({
             sucess: true,

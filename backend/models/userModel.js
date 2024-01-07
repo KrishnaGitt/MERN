@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-// const Schema=require("mongoose")
+const crypto=require("crypto")
 const bcrypt=require("bcrypt");
 const jwt = require("jsonwebtoken");
 const UserSchema=new mongoose.Schema({
@@ -36,7 +36,9 @@ role:{
 },
 refreshToken:{
     type:String
-}
+},
+resetPasswordToken:String,
+resetPasswordExpire:Date
 
 })
 
@@ -59,5 +61,15 @@ UserSchema.methods.generateAccessToken=function(){
 }
 UserSchema.methods.comparePassword= function(checkPassword){
 return  bcrypt.compare(checkPassword,this.password);
+}
+
+UserSchema.methods.getResetPasswordToken=function(){
+    const resetToken=crypto.randomBytes(20).toString("hex");
+    this.resetPasswordToken=crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex")
+    resetPasswordExpire=Date.now()+15*60*1000
+    return resetToken; 
 }
 module.exports =mongoose.model("User",UserSchema)
