@@ -108,3 +108,17 @@ exports.getUserDetails=async (req,res)=>{
     new responseHandler(200,user,"Please check your profile")
   )
 }
+
+exports.changePassword=async (req,res)=>{
+  const {password}=req.body
+  const user=await User.findById(req.user.id)
+  if(!user){
+    throw new errorHandler(404,"Not able to find the user in the data base")
+  }
+  user.password=password
+await user.save({validateBeforeSave:false})
+
+res.status(200).json(
+  new responseHandler(200,user,"PasswordChanged Sucessfully")
+)
+}
