@@ -41,6 +41,10 @@ const OrderSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Product",
       },
+      quantity:{
+        type:Number,
+        required:true
+      }
     },
   ],
   user:{
