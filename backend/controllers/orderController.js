@@ -33,7 +33,19 @@ res.status(200).json(
 
 exports.getSingleOrder=async(req,res)=>{
     console.log("----------->>>>>",req.params)
-const order=await Order.findById(req.params)
+const order=await Order.findById(req.params).populate("user","name email")
+if(!order){
+    throw new errorHandler(404,"Could able to find the respected order")
+}
+res.status(200).json(
+    new responseHandler(200,order,"Please check the order details")
+)
+}
+
+exports.getMyOder=async(req,res)=>{
+    console.log("----------->>>>>",req.user.id)
+const order=await Order.findById({user:req.user.id})
+console.log("----------->>>>>>",order)
 if(!order){
     throw new errorHandler(404,"Could able to find the respected order")
 }
