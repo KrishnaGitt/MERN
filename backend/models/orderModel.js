@@ -20,7 +20,7 @@ const OrderSchema = new mongoose.Schema({
     },
     phoneNo: {
       type: Number,
-      required: true,
+      required:true
     },
   },
   orderItem: [
@@ -30,10 +30,6 @@ const OrderSchema = new mongoose.Schema({
         required: true,
       },
       price: {
-        type: Number,
-        required: true,
-      },
-      phoneNo: {
         type: Number,
         required: true,
       },
@@ -50,7 +46,7 @@ const OrderSchema = new mongoose.Schema({
   user:{
     type:mongoose.Schema.ObjectId,
     ref:"User",
-    required:true
+    required:false
   },
   paymentInfo:{
     id:{
