@@ -53,3 +53,19 @@ res.status(200).json(
     new responseHandler(200,order,"Please check the order details")
 )
 }
+//Admin--get all product
+
+exports.getAllOrders=async(req,res)=>{
+const order=await Order.find()
+
+if(!order){
+    throw new errorHandler(404,"Could able to find the ORDERS")
+}
+let totalAmount=0
+order.forEach((order)=>{
+ totalAmount+=order.totalPrice
+})
+res.status(200).json(
+    new responseHandler(200,{order,totalAmount:totalAmount},"Please check the order details")
+)
+}
