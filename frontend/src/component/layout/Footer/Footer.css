@@ -1,0 +1,42 @@
+.footer{
+    margin-top: 10vmax;
+    padding: 2vmax;
+    background-color: rgb(34,33,33);
+    color:white;
+    display:flex;
+    align-items:center
+}
+.leftFooter{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leftFooter>img{
+        width: 22vmax;
+        margin: 1vmax;
+}
+.middleFooter{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.middleFooter>h1{
+    color: blue;
+}
+.middleFooter>p1{
+    color: pink;
+}
+.middleFooter>p{
+    color: orange;
+}
+.rightFooter>a{
+    color: red
+}
+.rightFooter{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

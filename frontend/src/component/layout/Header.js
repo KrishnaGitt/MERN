@@ -6,7 +6,7 @@ const Header=()=>{
     burgerColorHover: "#eb4034",
     logo,
     logoWidth: "20vmax",
-    navColor1: "white",
+    navColor1: "grey",
     logoHoverSize: "10px",
     logoHoverColor: "#eb4034",
     link1Text: "Home",
