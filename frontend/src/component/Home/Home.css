@@ -1,0 +1,45 @@
+.banner{
+    background-color: lightpink;
+    height: 30max;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.banner >h1{
+    font-size: 2.5vmax;
+    font-weight: 600;
+    font-family: "Roboto";
+}
+
+.banner >p{
+    font-size: 2.5vmax;
+    font-weight: 600;
+    font-family: "Roboto";
+}
+
+.banner >a>button{
+    font-size: 2.5vmax;
+    font-weight: 600;
+    font-family: "Roboto";
+    margin-bottom: 2vmax;
+}
+.banner::after{
+    content: "";
+    width: 100vw;
+    height: 100vmin;
+    background-color: white;
+    /* position: absolute;
+    top: 0%;
+    left:0%;
+    clip-path:ploygon(100% 68%,0 100%,100% 100%); */
+    max-width: 100%;
+}
+
+.homeHeading{
+    height: 70vmax;
+    text-align: center;
+    color: black;
+    margin: auto;
+    width:20vmax
+}

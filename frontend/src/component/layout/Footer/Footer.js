@@ -1,5 +1,5 @@
-import  playStore from "../../../images/products/1.jpg"
-import  appStore from "../../../images/products/2.jpg"
+import  playStore from "../../../images/products/playStore.png"
+import  appStore from "../../../images/products/appStore.jpg"
 import "./Footer.css"
 const Footer=()=>{
     return (
