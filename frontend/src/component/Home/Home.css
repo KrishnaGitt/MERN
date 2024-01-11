@@ -37,9 +37,16 @@
 }
 
 .homeHeading{
-    height: 70vmax;
+    height: 10vmax;
     text-align: center;
     color: black;
     margin: auto;
     width:20vmax
 }
+.container{display: flex;
+flex-direction: row;
+justify-content: space-around;
+margin: 1rem;
+word-wrap: true;
+padding: 1rem;
+flex-wrap: wrap;}
