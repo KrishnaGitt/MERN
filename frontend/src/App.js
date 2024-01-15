@@ -5,6 +5,7 @@ import React from "react";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
 import { Contact } from "./component/Home/Contact.js";
+import { Laoder } from "./component/layout/Loader/Laoder.js";
 function App() {
   React.useEffect(() => {
     WebFont.load({
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route extact path="/" Component={Home} />
         <Route extact path="/contact" Component={Contact} />
+        <Route extact path="/sad" Component={Laoder}/>
       </Routes>
       <Footer />
     </Router>

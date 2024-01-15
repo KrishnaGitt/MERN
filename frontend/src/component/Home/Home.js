@@ -7,16 +7,15 @@ import  appStore from "../../images/products/appStore.jpg"
 // import {CgMouse} from "react-icons";
 import {getProduct} from "../../../src/actions/productAction.js"
 import {useDispatch,useSelector}  from "react-redux"
+import Loader from "../layout/Loader/Laoder"
 const Home=()=>{
     const dispatch=useDispatch()
-    const {product}=useSelector((state)=>state.product)
-    console.log("-------->>>", product);
-
+    const {loading,product}=useSelector((state)=>state.product)
     useEffect(()=>{
         dispatch(getProduct)
     },[dispatch])
-    return(
-        <>  
+    return(<>
+        {loading?<Loader/>: <>  
         <MetaData title="Ecommerce"/>
         <div className="banner">
         <p>welcome to Ecommerce</p>
@@ -28,10 +27,12 @@ const Home=()=>{
         </a>
         </div>
         <h1 className="homeHeading">Products</h1>
-        <div id="container">
+        <div id="container" class="container">
         {product&&product.map((product)=>< Product product={product}/>) }
         </div>
         </>
+    }
+</>
     )
 }
 
