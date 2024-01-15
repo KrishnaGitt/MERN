@@ -5,17 +5,16 @@ const Product = require("../models/productModel")
 exports.getAllProducts = async (req, res) => {
     const resultPerPage=2;
     // let data = await Product.find();
-    let product=await Product.countDocuments();
+   let product=await Product.countDocuments();
    const apiFeatures= new ApiFeatures(Product, req.query)
- apiFeatures.search();
- apiFeatures.filter();
- apiFeatures.pagination(resultPerPage)
-  apiFeatures.query.then((a)=>{
-    res.status(200).json({
-        a,
+apiFeatures.search();
+apiFeatures.filter();
+apiFeatures.pagination(resultPerPage)
+apiFeatures.query.then((product)=>{
+     res.status(200).json({
         product
     });
-  })
+ })
 }
 
 
