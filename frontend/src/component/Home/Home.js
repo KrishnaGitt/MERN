@@ -8,9 +8,8 @@ import  appStore from "../../images/products/appStore.jpg"
 import {getProduct} from "../../../src/actions/productAction.js"
 import {useDispatch,useSelector}  from "react-redux"
 const Home=()=>{
-     console.log("hello");
     const dispatch=useDispatch()
-    const [product]=useSelector((state)=>state.product.product)
+    const {product}=useSelector((state)=>state.product)
     console.log("-------->>>", product);
 
     useEffect(()=>{
@@ -30,17 +29,7 @@ const Home=()=>{
         </div>
         <h1 className="homeHeading">Products</h1>
         <div id="container">
-            {console.log("insdeie container----------->",product?.name)}
-        {/* <Product product={product}/>
-        <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/>
-        // <Product product={product}/> */}
-         <Product product={product}/>
+        {product&&product.map((product)=>< Product product={product}/>) }
         </div>
         </>
     )

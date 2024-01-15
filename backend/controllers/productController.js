@@ -3,7 +3,7 @@ const Product = require("../models/productModel")
 
 
 exports.getAllProducts = async (req, res) => {
-    const resultPerPage=2;
+    const resultPerPage=10;
     // let data = await Product.find();
    let product=await Product.countDocuments();
    const apiFeatures= new ApiFeatures(Product, req.query)
