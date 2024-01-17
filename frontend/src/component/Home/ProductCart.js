@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const Product=({product})=>{
+const ProductCart=({product})=>{
     const option={
       edit:false,
       color:"green",
@@ -23,4 +23,4 @@ const Product=({product})=>{
     )
 }
 
-export default Product
+export default ProductCart

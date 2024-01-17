@@ -1,6 +1,6 @@
 import React,{Fragment,useEffect} from "react"
 import "./Home.css"
-import Product from "./Product.js"
+import ProductCart from "./ProductCart.js"
 import MetaData from "../layout/MetaData.js"
 // import  playStore from "../../../images/products/playStore.png"
 import  appStore from "../../images/products/appStore.jpg"
@@ -28,7 +28,7 @@ const Home=()=>{
         </div>
         <h1 className="homeHeading">Products</h1>
         <div id="container" class="container">
-        {product&&product.map((product)=>< Product product={product}/>) }
+        {product&&product.map((product)=>< ProductCart product={product}/>) }
         </div>
         </>
     }

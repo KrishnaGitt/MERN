@@ -46,14 +46,14 @@ const ProductSchema=new mongoose.Schema({
             type:String,
             required:[true,"Please enter the reviews"]
         }
-    },
-    {
+    ,
+    
         rating:{
             type:Number,
             required:[true, "please provide rating"]
         }
-    },
-    {
+    ,
+    
         comment:{
             type:String,
             required:false
