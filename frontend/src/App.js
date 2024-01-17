@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route extact path="/" Component={Home} />
         <Route extact path="/contact" Component={Contact} />
-        <Route extact path="/details" Component={ProductDetails}/>
+        <Route extact path="/details/:id" Component={ProductDetails}/>
       </Routes>
       <Footer />
     </Router>
