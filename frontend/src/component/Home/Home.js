@@ -12,7 +12,7 @@ const Home=()=>{
     const dispatch=useDispatch()
     const {loading,product}=useSelector((state)=>state.product)
     useEffect(()=>{
-        dispatch(getProduct)
+        dispatch(getProduct())
     },[dispatch])
     return(<>
         {loading?<Loader/>: <>  

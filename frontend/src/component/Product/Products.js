@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Product.css"
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCart from "../Home/ProductCart.js"
+import {getProduct} from "../../../src/actions/productAction.js"
+import { useParams } from 'react-router-dom'
 
-export const Products = () => {
+export const Products = ({keyword}) => {
     const dispatch=useDispatch();
     const {product}=useSelector((state)=>state.product)
-    console.log("------------ProductComponents",product);
+    const id=useParams()
+    useEffect(()=>{
+      dispatch(getProduct(id))
+    },[])
   return (<>
   <h2 className='productsHeading'>Prodducts</h2>
   <div className='products'>
