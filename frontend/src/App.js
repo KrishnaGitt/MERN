@@ -21,12 +21,12 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route extact path="/" Component={Home} />
-        <Route extact path="/contact" Component={Contact} />
-        <Route extact path="/details/:id" Component={ProductDetails}/>
-        <Route extact path="/products" Component={Products}/>
-        <Route path="/products/:keyword" component={Products} />
-        <Route extact path="/search" Component={Search}/>
+        <Route   path="/" Component={Home} />
+        <Route   path="/contact" Component={Contact} />
+        <Route   path="/details/:id" Component={ProductDetails}/>
+        <Route   path="/products" Component={Products}/>
+        <Route   path="/products/:keyword" Component={Products} />
+        <Route   path="/search" Component={Search}/>
       </Routes>
       <Footer />
     </Router>

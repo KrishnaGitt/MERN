@@ -5,13 +5,14 @@ import ProductCart from "../Home/ProductCart.js"
 import {getProduct} from "../../../src/actions/productAction.js"
 import { useParams } from 'react-router-dom'
 
-export const Products = ({keyword}) => {
+export const Products = () => {
     const dispatch=useDispatch();
     const {product}=useSelector((state)=>state.product)
-    const id=useParams()
+    const {keyword}=useParams()
+    console.log("Products------->",keyword);
     useEffect(()=>{
-      dispatch(getProduct(id))
-    },[])
+      dispatch(getProduct(keyword))
+    },[dispatch])
   return (<>
   <h2 className='productsHeading'>Prodducts</h2>
   <div className='products'>
