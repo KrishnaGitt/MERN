@@ -5,6 +5,10 @@ import ProductCart from "../Home/ProductCart.js"
 import {getProduct} from "../../../src/actions/productAction.js"
 import { useParams } from 'react-router-dom'
 
+//import Slider from "material-ui-slider";
+
+//import Typography from '@material-ui/core/Typography';
+
 export const Products = () => {
     const dispatch=useDispatch();
     const {product}=useSelector((state)=>state.product)
