@@ -3,9 +3,17 @@ import Laoder from '../layout/Loader/Laoder'
 import {useState,useRef} from "react"
 import { Link } from "react-router-dom";
 import "./LoginSingnUp.css"
+
+import { UseDispatch, useDispatch } from 'react-redux';
+import {getUserLogin} from "../../actions/userAction"
+
 const LoginSingnUp = () => {
-    const [loginEmail,setLoginEmail]=useState('');
+
+  const dispatch=useDispatch();
+
+    const[loginEmail,setLoginEmail]=useState('')
     const[loginPassword,setLoginPassword]=useState('')
+
 
     const[user,setUser]=useState({
       name:"",
@@ -34,12 +42,13 @@ const LoginSingnUp = () => {
           loginTab.current.classList.add("shiftToLeft");
         }
       };
-const loginSubmit=()=>{
-  console.log("-------loginSubmit---------------")
+const loginSubmit=(e)=>{
+  e.preventDefault();
+ dispatch(getUserLogin(loginEmail,loginPassword))
 } 
 
 const registerDateChange=(e)=>{
-  console.log("-------registerDateChange---------------")
+  console.log("-------registerDateChange---------------",)
 
   if(false){
 

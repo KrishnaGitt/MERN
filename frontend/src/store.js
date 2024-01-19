@@ -1,13 +1,15 @@
 import {createStore,combineReducers,applyMiddleware} from "redux"
 import {thunk} from "redux-thunk"
 import {productReducers,getProductDetailReducers} from "./reducers/productReducers.js"
+import {userReducer} from "./reducers/userReducer.js"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { ALL_PRODUCT_FAIL,ALL_PRODUCT_SUCCESS,ALL_PRODUCT_REQUEST ,CLEAR_ERROR} from "./constanst/productConstants.js";
 
 
 const reducer=combineReducers({
     product:productReducers,
-    productDetails:getProductDetailReducers
+    productDetails:getProductDetailReducers,
+    login:userReducer
 })
 
 let initialstate={}
