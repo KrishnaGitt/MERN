@@ -6,6 +6,15 @@ import "./LoginSingnUp.css"
 const LoginSingnUp = () => {
     const [loginEmail,setLoginEmail]=useState('');
     const[loginPassword,setLoginPassword]=useState('')
+
+    const[user,setUser]=useState({
+      name:"",
+      email:"",
+      password:""
+    });
+
+    const {name,email,password}=user; 
+
     const loginTab=useRef(null);
     const registerTab=useRef(null);
     const switcherTab=useRef(null);
@@ -14,20 +23,41 @@ const LoginSingnUp = () => {
           switcherTab.current.classList.add("shiftToNeutral");
           switcherTab.current.classList.remove("shiftToRight");
     
-         // registerTab.current.classList.remove("shiftToNeutralForm");
+         registerTab.current.classList.remove("shiftToNeutralForm");
           loginTab.current.classList.remove("shiftToLeft");
         }
         if (tab === "register") {
           switcherTab.current.classList.add("shiftToRight");
           switcherTab.current.classList.remove("shiftToNeutral");
     
-         // registerTab.current.classList.add("shiftToNeutralForm");
+         registerTab.current.classList.add("shiftToNeutralForm");
           loginTab.current.classList.add("shiftToLeft");
         }
       };
 const loginSubmit=()=>{
+  console.log("-------loginSubmit---------------")
+} 
 
-}    
+const registerDateChange=(e)=>{
+  console.log("-------registerDateChange---------------")
+
+  if(false){
+
+  }
+  else{
+    let newUser={...user};
+    newUser[e.target.name]=e.target.value;
+    setUser(newUser);
+    // setUser({...user,[e.target.name]:e.target.value})
+  }
+}
+const registerSubmit=(e)=>{
+  e.preventDefault();
+  const myForm=new FormData();
+  myForm.set("name",name);
+  myForm.set("email",email)
+  myForm.set("password",password)
+}   
   return (
   <>
     <div className='LoginSignUpContainer'>
@@ -35,7 +65,7 @@ const loginSubmit=()=>{
             <div>
                 <div className='login_signUp_toggle'>
                     <p onClick={(e)=>switchTabs(e,"login")}>Login</p>
-                    <p onClikc={(e)=>switchTabs(e,"register")}>Registor</p>
+                    <p onClick={(e)=>switchTabs(e,"register")}>Registor</p>
                 </div>
                 <button ref={switcherTab}></button>
             </div>
@@ -60,6 +90,44 @@ const loginSubmit=()=>{
                 </div>
                 <Link to="/password/forgot">ForgotPassword</Link>
                 <input type="submit" value="login" className='loginBtn'/>
+            </form>
+            <form className='signUpForm' ref={registerTab} onSubmit={registerSubmit}>
+              <div className='signUpName'>
+                  <input
+                  type="text"
+                  placeholder='Please enter you name'
+                  required
+                  name="name"
+                  value={name}
+                  onChange={registerDateChange}
+                  />  
+              </div>
+              <div className='signUpEmail'>
+                  <input
+                  type="email"
+                  placeholder='Please enter you email'
+                  required
+                  name="email"
+                  value={email}
+                  onChange={registerDateChange}
+                  />  
+              </div>
+              <div className='signUpPassword'>
+                  <input
+                  type="password"
+                  placeholder='Please enter you password'
+                  required
+                  name="email"
+                  value={password}
+                  onChange={registerDateChange}
+                  />  
+              </div>
+              <input
+                type="submit"
+                value="Registor"
+                className='signUpBtn'
+               
+              />
             </form>
         </div>
     </div>
