@@ -120,3 +120,15 @@ res.status(200).json(
   new responseHandler(200,user,"PasswordChanged Sucessfully")
 )
 }
+
+
+exports.getCurrentUser=async (req,res)=>{
+  const {user}=req.body
+  const userLoggedIn=await User.findById(req.user.id)
+  if(!userLoggedIn){
+    throw new errorHandler(404,"Not able to find the user in the data base")
+  }
+res.status(200).json(
+  new responseHandler(200,userLoggedIn,"PasswordChanged Sucessfully")
+)
+}
