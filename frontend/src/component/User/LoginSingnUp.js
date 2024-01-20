@@ -58,16 +58,11 @@ const loginSubmit=(e)=>{
 
 const registerDateChange=(e)=>{
   console.log("-------registerDateChange---------------",)
-
-  if(false){
-
-  }
-  else{
-    let newUser={...user};
-    newUser[e.target.name]=e.target.value;
+    let newUser = { ...user };
+    newUser[e.target.name] = e.target.value;
+    console.log(newUser)
     setUser(newUser);
     // setUser({...user,[e.target.name]:e.target.value})
-  }
 }
 const registerSubmit=(e)=>{
   e.preventDefault();
@@ -75,7 +70,8 @@ const registerSubmit=(e)=>{
   myForm.set("name",name);
   myForm.set("email",email)
   myForm.set("password",password)
-  dispatch(registerUser(myForm));
+    dispatch(registerUser({...user}));
+
 }   
   return (
   <>
@@ -136,7 +132,7 @@ const registerSubmit=(e)=>{
                   type="password"
                   placeholder='Please enter you password'
                   required
-                  name="email"
+                  name="password"
                   value={password}
                   onChange={registerDateChange}
                   />  

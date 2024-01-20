@@ -24,18 +24,18 @@ try {
 }
 }
 
-export const registerUser =(userForm)=> async(dispatch) => {
+export const registerUser =({name,email ,password})=> async(dispatch) => {
     
   dispatch({
     type:REGISTER_USER_REQUEST
   })
 try { 
-    const {data} =await axios.post("/api/v1/user/registorUser",{userForm});
-     console.log("----------data---",data)
+    const {data} =await axios.post("/api/v1/user/registorUser",{name,email,password});
+      console.log("---------data--",data);
     dispatch({
         type:REGISTER_USER_SUCCESS,
         payload:data
-    });
+    })
 } catch (error) {
     dispatch({
         type:REGISTER_USER_FAIL,
