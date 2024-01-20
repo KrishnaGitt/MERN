@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Laoder from '../layout/Loader/Laoder'
 import {useState,useRef} from "react"
 import { Link } from "react-router-dom";
 import "./LoginSingnUp.css"
+import { useNavigate } from "react-router-dom";
 
-import { UseDispatch, useDispatch } from 'react-redux';
-import {getUserLogin} from "../../actions/userAction"
+import { useDispatch, useSelector } from 'react-redux';
+import {getUserLogin,registerUser} from "../../actions/userAction"
 
 const LoginSingnUp = () => {
-
+  const navigate = useNavigate();
   const dispatch=useDispatch();
+  const {error}=useSelector((state)=>state.login)
 
     const[loginEmail,setLoginEmail]=useState('')
     const[loginPassword,setLoginPassword]=useState('')
@@ -22,7 +24,14 @@ const LoginSingnUp = () => {
     });
 
     const {name,email,password}=user; 
-
+    useEffect(()=>{
+      if(error){
+       alert(error)
+      }
+      else{
+       // navigate("/account")
+      }
+    },[error,navigate])
     const loginTab=useRef(null);
     const registerTab=useRef(null);
     const switcherTab=useRef(null);
@@ -66,6 +75,7 @@ const registerSubmit=(e)=>{
   myForm.set("name",name);
   myForm.set("email",email)
   myForm.set("password",password)
+  dispatch(registerUser(myForm));
 }   
   return (
   <>

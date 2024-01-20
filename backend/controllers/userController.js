@@ -31,13 +31,11 @@ exports.registorUser= async(req,resp)=>{
 
 exports.loginUser=async(req,res)=>{
   //username|| email and passwordword check
-  const{name,password}=req.body
-  if(!(name&&password)){
+  const{email,password}=req.body
+  if(!(email&&password)){
     throw new errorHandler(400,"please enter username or password")
   }
-  const user=await User.findOne({
-    $or:[{name}]
-  }) 
+  const user=await User.findOne({email});
   if(!user){
     throw new errorHandler(400,"User doesnot exits with this username or password")
   }
