@@ -9,10 +9,11 @@ import Products from "./component/Product/Products.js"
 import { Contact } from "./component/Home/Contact.js";
 import { Laoder } from "./component/layout/Loader/Laoder.js";
 import{ProductDetails} from "./component/Product/ProductDetails.js"
-import LoginSingnUp from"./component/User/LoginSingnUp.js"
+// import LoginSingnUp from"./component/User/LoginSingnUp.js"
+import Login from "./component/User/Login.js";
 function App() {
   React.useEffect(() => {
-    WebFont.load({
+ WebFont.load({
       google: {
         families: ["Roboto"],
       },
@@ -28,7 +29,7 @@ function App() {
         <Route   path="/products" Component={Products}/>
         <Route   path="/products/:keyword" Component={Products} />
         <Route   path="/search" Component={Search}/>
-        <Route   path="/login" Component={LoginSingnUp}/>
+        <Route   path="/login" Component={Login}/>
       </Routes>
       <Footer />
     </Router>
