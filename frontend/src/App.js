@@ -11,17 +11,26 @@ import { Laoder } from "./component/layout/Loader/Laoder.js";
 import{ProductDetails} from "./component/Product/ProductDetails.js"
 import LoginSingnUp from"./component/User/LoginSingnUp.js"
 import Login from "./component/User/Login.js";
+import  store  from "./store";
+import { getCurrentUser } from "./actions/userAction.js";
+import { useSelector } from "react-redux";
+import UserOption from "./component/layout/UserOption.js";
 function App() {
+  
   React.useEffect(() => {
  WebFont.load({
       google: {
         families: ["Roboto"],
       },
     });
+    store.dispatch(getCurrentUser)
   }, []);
+  const user=useSelector((state)=>state.login.user)
+  console.log("------------user-----",user)
   return (
     <Router>
       <Header />
+      <UserOption user={user}></UserOption>
       <Routes>
         <Route   path="/" Component={Home} />
         <Route   path="/contact" Component={Contact} />

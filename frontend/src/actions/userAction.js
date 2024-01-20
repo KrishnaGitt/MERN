@@ -1,6 +1,16 @@
 import React from 'react'
 import { UseDispatch,useDispatch,useSelector } from 'react-redux';
-import {LOGIN_REQUEST,LOGIN_SUCCESS,LOGIN_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, RESET_PASSWORD_FAIL, REGISTER_USER_FAIL} from "../constanst/userConstants.js";
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL, 
+  REGISTER_USER_REQUEST, 
+  REGISTER_USER_SUCCESS, 
+  RESET_PASSWORD_FAIL, 
+  REGISTER_USER_FAIL,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAIL} from "../constanst/userConstants.js";
 import axios from "axios";
 
 
@@ -42,4 +52,21 @@ try {
         payload:error.message
     })
 }
+}
+
+export const getCurrentUser=async(dispatch)=>{
+try {
+  dispatch({type:LOAD_USER_REQUEST})
+  const {data}=await axios.get("/api/v1/user/getCurrentUser");
+  dispatch({
+    type:LOAD_USER_SUCCESS,
+    payload:data
+  })
+} catch (error) {
+  dispatch({
+    type:LOAD_USER_FAIL,
+    payload:error
+  })
+}
+
 }
