@@ -30,7 +30,7 @@ export const registerUser =(userForm)=> async(dispatch) => {
     type:REGISTER_USER_REQUEST
   })
 try { 
-    const {data} =await axios.post("/api/v1/user/loginUser",{userForm});
+    const {data} =await axios.post("/api/v1/user/registorUser",{userForm});
      console.log("----------data---",data)
     dispatch({
         type:REGISTER_USER_SUCCESS,
