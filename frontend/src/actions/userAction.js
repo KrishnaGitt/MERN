@@ -10,7 +10,10 @@ import {
   REGISTER_USER_FAIL,
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
-  LOAD_USER_FAIL} from "../constanst/userConstants.js";
+  LOAD_USER_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL
+} from "../constanst/userConstants.js";
 import axios from "axios";
 
 
@@ -52,6 +55,19 @@ try {
         payload:error.message
     })
 }
+}
+
+export const logOutUser=async(dispatch)=>{
+  try{
+    await axios.post("/api/v1/user/logoutUser")
+    dispatch({
+      type:LOGOUT_SUCCESS
+    })
+  }catch(error){
+    dispatch({
+      type:LOGOUT_FAIL
+    })
+  }
 }
 
 export const getCurrentUser=async(dispatch)=>{

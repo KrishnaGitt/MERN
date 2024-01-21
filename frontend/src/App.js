@@ -23,14 +23,14 @@ function App() {
         families: ["Roboto"],
       },
     });
-    store.dispatch(getCurrentUser)
+    // store.dispatch(getCurrentUser)
   }, []);
-  const user=useSelector((state)=>state.login.user)
-  console.log("------------user-----",user)
+  // const user=useSelector((state)=>state.login.user)
+  // console.log("------------user-----",user)
   return (
     <Router>
       <Header />
-      <UserOption user={user}></UserOption>
+      {/* {user&&<UserOption user={user}></UserOption>} */}
       <Routes>
         <Route   path="/" Component={Home} />
         <Route   path="/contact" Component={Contact} />

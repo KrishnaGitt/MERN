@@ -9,7 +9,9 @@ import {
      REGISTER_USER_FAIL,
      LOAD_USER_REQUEST,
      LOAD_USER_SUCCESS,
-     LOAD_USER_FAIL
+     LOAD_USER_FAIL,
+     LOGOUT_SUCCESS,
+     LOGOUT_FAIL
     } from "../constanst/userConstants";
 import { UseDispatch,useSelector } from 'react-redux';
 
@@ -37,7 +39,15 @@ switch(action.type){
     case  LOAD_USER_FAIL:
         return{
             ...state
-        }     
+        }
+    case LOGOUT_SUCCESS:
+        return{
+            user:null
+        }
+    case LOGIN_FAIL:
+        return{
+            ...state
+        }         
     default:
         return state;    
     }
