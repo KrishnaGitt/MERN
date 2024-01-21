@@ -15,6 +15,9 @@ import { getCurrentUser } from "./actions/userAction.js";
 import { useSelector } from "react-redux";
 import UserOption from "./component/layout/UserOption.js";
 import Profile from "./component/User/Profile.js"
+import UpdatePassword from "./component/User/UpdatePassword.js"
+import UpdateProfile from "./component/User/UpdateProfile.js"
+import myOders from "./component/Order/myOders.js"
 function App() {
   
   React.useEffect(() => {
@@ -39,6 +42,9 @@ function App() {
         <Route   path="/search" Component={Search}/>
         <Route   path="/login" Component={LoginSingnUp}/>
         <Route   path="/account" Component={Profile}/>
+        <Route   path="/password/update" Component={UpdatePassword}/>
+        <Route   path="/me/update" Component={UpdateProfile}/>
+        <Route   path="/orders" Component={myOders}/>
       </Routes>
       <Footer />
     </Router>
