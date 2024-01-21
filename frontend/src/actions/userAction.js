@@ -12,9 +12,33 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
   LOGOUT_SUCCESS,
-  LOGOUT_FAIL
+  LOGOUT_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_RESET,
+  UPDATE_PASSWORD_FAIL
 } from "../constanst/userConstants.js";
 import axios from "axios";
+
+
+export const changeUserPassword=(password)=>async(dispatch)=>{
+
+  try{
+    dispatch({
+      type:UPDATE_PASSWORD_REQUEST
+    })
+    const {data}=await axios.post("/api/v1/user/changePassword",{password})
+
+  }catch(error){
+    dispatch({
+      type:UPDATE_PASSWORD_FAIL,
+      payload:error
+    })
+  }
+}
 
 
 export const getUserLogin =(email,password)=> async(dispatch) => {
