@@ -65,7 +65,8 @@ export const logOutUser=async(dispatch)=>{
     })
   }catch(error){
     dispatch({
-      type:LOGOUT_FAIL
+      type:LOGOUT_FAIL,
+      payload:error
     })
   }
 }

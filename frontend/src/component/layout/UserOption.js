@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import Usercss from"./Usercss.css"
 import {useDispatch,useSelector } from 'react-redux'
 import {logOutUser} from "../../../src/actions/userAction.js"
+import { useNavigate } from "react-router-dom";
+import Profile from "../../component/User/Profile.js"
 const UserOption = ({user}) => {
+    const navigate = useNavigate();
     const dispatch=useDispatch();
     const logout=(e)=>{
         console.log("loggout user is callled")
@@ -16,6 +19,10 @@ const UserOption = ({user}) => {
     const orders=(e)=>{
         console.log("hello logout");
     }
+    const profile=(e)=>{
+        console.log("hello logout");
+        navigate("/account")
+    }
   return (
    <>{user?<div className='uptionsdiv'>
     <p>UserOption:{user.name}</p>
@@ -23,6 +30,7 @@ const UserOption = ({user}) => {
         <li><button onClick={(e)=>logout(e)}>Logout</button></li>
         <li><button onClick={(e)=>dashboard(e)}>Dashboard</button></li>
         <li> <button onClick={(e)=>orders(e)}>orders</button></li>
+        <li> <button onClick={(e)=>profile(e)}>Profile</button></li>
     </ol>
    
    

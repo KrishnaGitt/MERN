@@ -129,6 +129,6 @@ exports.getCurrentUser=async (req,res)=>{
     throw new errorHandler(404,"Not able to find the user in the data base")
   }
 res.status(200).json(
-  new responseHandler(200,userLoggedIn,"PasswordChanged Sucessfully")
+  new responseHandler(200,userLoggedIn,"Logged in Sucessfully")
 )
 }
