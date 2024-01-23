@@ -32,7 +32,7 @@ function App() {
   return (
     <Router>
       <Header />
-      {user?<UserOption user={user}></UserOption>:<></>}
+      {user?.name?<UserOption user={user}></UserOption>:<></>}
       <Routes>
         <Route   path="/" Component={Home} />
         <Route   path="/contact" Component={Contact} />

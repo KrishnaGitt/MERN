@@ -5,15 +5,20 @@ const User=require("../models/userModel")
 exports.authenication=async(req,res,next)=>{
 
     const accestoken=req.cookies?.accessToken
-    if(!accestoken){
-        throw new errorHandler(404,"please login to aceess the product")
-    }
-   const decodedtoken= jwt.verify(accestoken,process.env.ACCESS_TOKEN_SECREAT)
-   if(!decodedtoken){
-    throw new errorHandler(404,"User is not allowed to do login related actvities")
-   }
-    req.user=await User.findById(decodedtoken._id);
-    next();
+  try {
+      if(!accestoken){
+          throw new errorHandler(404,"please login to aceess the product")
+      }
+     const decodedtoken= jwt.verify(accestoken,process.env.ACCESS_TOKEN_SECREAT)
+     if(!decodedtoken){
+      throw new errorHandler(404,"User is not allowed to do login related actvities")
+     }
+      req.user=await User.findById(decodedtoken._id);
+      next();
+  } catch (error) {
+    throw new errorHandler("400",error);
+    
+  }
 }
 
 exports.authenticateAdmin=(...roles)=>{
