@@ -11,6 +11,7 @@ import Loader from "../layout/Loader/Laoder"
 const Home=()=>{
     const dispatch=useDispatch()
     const {loading,product}=useSelector((state)=>state.product)
+    const {user}=useSelector((state)=>state.login)
     useEffect(()=>{
         dispatch(getProduct())
     },[dispatch])
@@ -19,6 +20,7 @@ const Home=()=>{
         <MetaData title="Ecommerce"/>
         <div className="banner">
         <p>welcome to Ecommerce</p>
+        <p>UserName{user?.name}</p>
         <h1>Find amazing products below</h1>
         <a href="#container">
             <button>

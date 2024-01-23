@@ -1,12 +1,26 @@
 import React from 'react'
+import {changeUserPassword} from "../../actions/userAction.js"
 import  { Fragment, useState, useEffect } from "react";
 import "./UpdatePassword.css";
  const UpdatePassword = () => {
 
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password,setPassword]=useState({
+    oldPassword:"",
+    newPassword:"",
+    confirmPassword:""
+  })
 
+  const {oldPassword,newPassword,confirmPassword}=password;
+  const passwordChange=(e)=>{
+    let pss={...password}
+    pss[e.target.name]=e.target.value;
+    setPassword(pss)
+  }
+
+  const updatePasswordSubmit=(e)=>{
+    e.preventDefault()
+    dispatchEvent(changeUserPassword(...password))
+  }
   return (
     <Fragment>
           {/* <MetaData title="Change Password" /> */}
@@ -16,7 +30,7 @@ import "./UpdatePassword.css";
 
               <form
                 className="updatePasswordForm"
-                // onSubmit={updatePasswordSubmit}
+                onSubmit={updatePasswordSubmit}
               >
                 <div className="loginPassword">
                   
@@ -24,8 +38,8 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="Old Password"
                     required
-                    // value={oldPassword}
-                    // onChange={(e) => setOldPassword(e.target.value)}
+                    value={oldPassword}
+                     onChange={passwordChange}
                   />
                 </div>
 
@@ -35,8 +49,8 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="New Password"
                     required
-                    // value={newPassword}
-                    // onChange={(e) => setNewPassword(e.target.value)}
+                    value={newPassword}
+                    onChange={passwordChange}
                   />
                 </div>
                 <div className="loginPassword">
@@ -45,8 +59,8 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="Confirm Password"
                     required
-                    // value={confirmPassword}
-                    // onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
+                    onChange={passwordChange}
                   />
                 </div>
                 <input

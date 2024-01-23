@@ -108,7 +108,10 @@ exports.getUserDetails=async (req,res)=>{
 }
 
 exports.changePassword=async (req,res)=>{
-  const {password}=req.body
+  const {newPassword,comfirmPassword}=req.body
+  if(newPassword!==comfirmPassword){
+    throw new errorHandler("404","Please enter the same password")
+  }
   const user=await User.findById(req.user.id)
   if(!user){
     throw new errorHandler(404,"Not able to find the user in the data base")
