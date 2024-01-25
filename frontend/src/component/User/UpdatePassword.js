@@ -1,9 +1,10 @@
 import React from 'react'
 import {changeUserPassword} from "../../actions/userAction.js"
 import  { Fragment, useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import "./UpdatePassword.css";
  const UpdatePassword = () => {
-
+  const dispatch=useDispatch();
   const [password,setPassword]=useState({
     oldPassword:"",
     newPassword:"",
@@ -19,7 +20,7 @@ import "./UpdatePassword.css";
 
   const updatePasswordSubmit=(e)=>{
     e.preventDefault()
-    dispatchEvent(changeUserPassword(...password))
+    dispatch(changeUserPassword(newPassword,confirmPassword))
   }
   return (
     <Fragment>
@@ -38,6 +39,7 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="Old Password"
                     required
+                    name="oldPassword"
                     value={oldPassword}
                      onChange={passwordChange}
                   />
@@ -49,6 +51,7 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="New Password"
                     required
+                    name="newPassword"
                     value={newPassword}
                     onChange={passwordChange}
                   />
@@ -59,6 +62,7 @@ import "./UpdatePassword.css";
                     type="password"
                     placeholder="Confirm Password"
                     required
+                    name="confirmPassword"
                     value={confirmPassword}
                     onChange={passwordChange}
                   />

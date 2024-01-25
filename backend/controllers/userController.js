@@ -108,15 +108,15 @@ exports.getUserDetails=async (req,res)=>{
 }
 
 exports.changePassword=async (req,res)=>{
-  const {newPassword,comfirmPassword}=req.body
-  if(newPassword!==comfirmPassword){
+  const {newPassword,confirmPassword}=req.body
+  if(newPassword!==confirmPassword){
     throw new errorHandler("404","Please enter the same password")
   }
   const user=await User.findById(req.user.id)
   if(!user){
     throw new errorHandler(404,"Not able to find the user in the data base")
   }
-  user.password=password
+  user.password=newPassword;
 await user.save({validateBeforeSave:false})
 
 res.status(200).json(

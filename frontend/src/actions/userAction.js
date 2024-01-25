@@ -24,13 +24,18 @@ import {
 import axios from "axios";
 
 
-export const changeUserPassword=({oldPassword,newPassword,confirmPassword})=>async(dispatch)=>{
+export const changeUserPassword=(newPassword,confirmPassword)=>async(dispatch)=>{
 
   try{
     dispatch({
       type:UPDATE_PASSWORD_REQUEST
     })
-    const {data}=await axios.post("/api/v1/user/changePassword",{oldPassword,newPassword,confirmPassword})
+    const {data}=await axios.post("/api/v1/user/changePassword",{newPassword,confirmPassword})
+    console.log("----------data------",data);
+    dispatch({
+      type:UPDATE_PASSWORD_SUCCESS,
+      payload:data
+    })
 
   }catch(error){
     dispatch({
