@@ -19,16 +19,18 @@ import UpdatePassword from "./component/User/UpdatePassword.js"
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import myOders from "./component/Order/myOders.js"
 function App() {
-  
+  const user=useSelector((state)=>state.login.user)
+  console.log("inside app .js------------")
   React.useEffect(() => {
  WebFont.load({
       google: {
         families: ["Roboto"],
       },
     });
-   store.dispatch(getCurrentUser)
+    
+    user && store.dispatch(getCurrentUser)
    }, []);
-  const user=useSelector((state)=>state.login.user)
+  
   return (
     <Router>
       <Header />
