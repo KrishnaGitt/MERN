@@ -11,7 +11,10 @@ import {
      LOAD_USER_SUCCESS,
      LOAD_USER_FAIL,
      LOGOUT_SUCCESS,
-     LOGOUT_FAIL
+     LOGOUT_FAIL,
+     UPDATE_PROFILE_REQUEST,
+     UPDATE_PROFILE_SUCCESS,
+     UPDATE_PROFILE_FAIL,
     } from "../constanst/userConstants";
 import { UseDispatch,useSelector } from 'react-redux';
 
@@ -47,6 +50,26 @@ switch(action.type){
   
     default:
         return state;    
+    }
+   
+ }
+
+ export const profileReducer=(state={user:{}},action)=>{
+    switch(action.type){
+        case UPDATE_PROFILE_REQUEST:
+            return{
+                ...state
+            }
+        case  UPDATE_PROFILE_SUCCESS:    
+            return{
+                loading :false,
+                state:action.payload
+            }
+        case UPDATE_PROFILE_FAIL:
+            return{...state}    
+
+         default:
+            return {...state}   
     }
    
  }

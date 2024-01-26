@@ -19,7 +19,7 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_RESET,
-  UPDATE_PASSWORD_FAIL
+  UPDATE_PASSWORD_FAIL,
 } from "../constanst/userConstants.js";
 import axios from "axios";
 
@@ -115,4 +115,27 @@ try {
   })
 }
 
+}
+
+export const updateUser=(name,email)=>(dispatch)=>{
+
+  try {
+    dispatch({
+      type:UPDATE_PROFILE_REQUEST
+    })
+    const data={
+        name:"krishna",
+        email:"singhal.krishna4321@gmail.com"
+    }
+   console.log("inside user action------->",name,email)
+   dispatch({
+    type:UPDATE_PROFILE_SUCCESS,
+    payload:data
+   })
+  } catch (error) {
+    dispatch({
+      type:UPDATE_PROFILE_FAIL,
+      payload:error
+    })
+  }
 }

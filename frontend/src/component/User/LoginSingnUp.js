@@ -57,7 +57,7 @@ const loginSubmit=(e)=>{
 } 
 
 const registerDateChange=(e)=>{
-  console.log("-------registerDateChange---------------",)
+  console.log("-------registerDateChange---------------")
     let newUser = { ...user };
     newUser[e.target.name] = e.target.value;
     console.log(newUser)
