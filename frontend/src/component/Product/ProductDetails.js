@@ -1,19 +1,41 @@
 import React from 'react'
 import {useDispatch,useSelector } from 'react-redux'
 import {getProductDetail} from "../../../src/actions/productAction.js"
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import "./ProductDetails.css"
 import { Link, useParams } from "react-router-dom";
 import { ReviewCard } from './ReviewCard.js'
+import {addItemsToCart} from "../../../src/actions/cartAction.js"
 export const ProductDetails = () => {
     let {id}=useParams();
     const dispatch=useDispatch();
+    let [quantity,setQuantity]=useState(1);
     const {productDetail}=useSelector((state)=>state.productDetails);
     useEffect(()=>{
         dispatch(getProductDetail(id))
     },[dispatch])
     console.log("productDetail---",productDetail);
     console.log("productDetail.review-------",productDetail.review)
+
+    const increaseProductQuantity=()=>{
+      if(productDetail?.stock<=quantity){ return}
+        quantity=quantity+1
+        setQuantity(quantity)
+    }
+
+    const decreaseProductQuantity=()=>{
+      if(quantity<=1) return;
+      quantity=quantity-1;
+      setQuantity(quantity);
+    }
+
+    const addItemToCart=()=>{
+      console.log("product Details--------->>>",productDetail._id,quantity)
+      dispatch(addItemsToCart(productDetail._id,quantity))
+
+    }
+
+
   return (<>
   {productDetail.name? <div className='ProductDetails'>
     
@@ -31,11 +53,11 @@ export const ProductDetails = () => {
       <h1>{productDetail?.price}</h1>
       <div className='detailBlock-3-1'>
           <div className='detailsBlock3-1-1'>
-            <button>-</button>
-            <input value="1" type="number"></input>
-            <button>+</button>
+            <button onClick={decreaseProductQuantity}>-</button>
+            <input value={quantity} readOnly type="number"></input>
+            <button onClick={increaseProductQuantity}>+</button>
           </div>
-          <button>add to card</button>   
+          <button onClick={addItemToCart}>add to card</button>   
       </div>
       <p>Status
         <b className={productDetail.stock<1?"red":"green"}>{productDetail.stock}</b>
