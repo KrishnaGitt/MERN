@@ -4,7 +4,6 @@ const responseHandler=require("../Utils/responseHandler")
 const cookie=require("cookie-parser")
 const sendEmail=require("../Utils/sendEmail")
 exports.registorUser= async(req,resp)=>{
-  console.log("insideregistor==========")
     const {name,email}=req.body
    
   try {
@@ -135,3 +134,18 @@ res.status(200).json(
   new responseHandler(200,userLoggedIn,"Logged in Sucessfully")
 )
 }
+exports.changeUserProfile=async(req,res)=>{
+ const id=req.user.id;
+ const {name,email}=req.body;
+ const existedUser=await User.findById(id);
+ console.log("---getCurrentUser--->",existedUser,name,email)
+ if(!existedUser){
+  throw new errorHandler(204,"Not Able to change the user name or password ")
+ }
+ existedUser.name=name;
+ existedUser.email=email;
+ await existedUser.save({validateBeforeSave:false})
+ res.status(200).json(
+  new responseHandler(200,existedUser,"dataChanged sucessfully")
+ )
+ }
