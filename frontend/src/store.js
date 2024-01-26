@@ -2,6 +2,7 @@ import {createStore,combineReducers,applyMiddleware} from "redux"
 import {thunk} from "redux-thunk"
 import {productReducers,getProductDetailReducers} from "./reducers/productReducers.js"
 import {userReducer,profileReducer} from "./reducers/userReducer.js"
+import {cartReducer} from "./reducers/cardReducer.js"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { ALL_PRODUCT_FAIL,ALL_PRODUCT_SUCCESS,ALL_PRODUCT_REQUEST ,CLEAR_ERROR} from "./constanst/productConstants.js";
 
@@ -11,6 +12,7 @@ const reducer=combineReducers({
     productDetails:getProductDetailReducers,
     login:userReducer,
     profileUpdate:profileReducer
+    // ,cart:cartReducer
 })
 
 let initialstate={}
