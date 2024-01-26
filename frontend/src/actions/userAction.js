@@ -117,16 +117,13 @@ try {
 
 }
 
-export const updateUser=(name,email)=>(dispatch)=>{
+export const updateUser=(name,email)=>async(dispatch)=>{
 
   try {
     dispatch({
       type:UPDATE_PROFILE_REQUEST
     })
-    const data={
-        name:"krishna",
-        email:"singhal.krishna4321@gmail.com"
-    }
+    const {data}= await axios.put("/api/v1/user/changeUserProfile",{name,email})
    console.log("inside user action------->",name,email)
    dispatch({
     type:UPDATE_PROFILE_SUCCESS,

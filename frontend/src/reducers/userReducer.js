@@ -63,7 +63,7 @@ switch(action.type){
         case  UPDATE_PROFILE_SUCCESS:    
             return{
                 loading :false,
-                state:action.payload
+                state:action.payload.data
             }
         case UPDATE_PROFILE_FAIL:
             return{...state}    
