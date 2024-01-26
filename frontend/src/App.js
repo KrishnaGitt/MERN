@@ -19,7 +19,7 @@ import UpdatePassword from "./component/User/UpdatePassword.js"
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import myOders from "./component/Order/myOders.js"
 function App() {
-  const user=useSelector((state)=>state.login.user)
+  const {user}=useSelector((state)=>state.login)
   console.log("inside app .js------------")
   React.useEffect(() => {
  WebFont.load({

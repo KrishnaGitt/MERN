@@ -44,10 +44,7 @@ switch(action.type){
         return{
             user:null
         }
-    case LOGIN_FAIL:
-        return{
-            ...state
-        }         
+  
     default:
         return state;    
     }
