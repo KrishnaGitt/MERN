@@ -1,8 +1,10 @@
-import React from 'react'
+import React from "react";
+import "./CartItemCard.css";
+import { Link } from "react-router-dom";
 
-const CartItemCard = () => {
+const CartItemCard = ({item}) => {
   return (
-    <div>CartItemCard</div>
+    <div className="CartItemCard">User name:{item.name}</div>
   )
 }
 

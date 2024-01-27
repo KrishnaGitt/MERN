@@ -45,7 +45,10 @@
   .cartHeader > p:last-child {
     text-align: end;
   }
-  
+  .inputText1{
+    width: 100px;
+    font-size: 10px;
+  }
   .cartContainer {
     width: 90%;
     margin: auto;
