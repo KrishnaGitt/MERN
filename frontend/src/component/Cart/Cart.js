@@ -8,8 +8,10 @@ export const Cart = () => {
     const item={
         name:"krishna",
         product:"apple",
-        price:"120"
+        price:120,
+        quantity:10
     }
+    const [subTotal,setSubTotal]=useState(0);
     const {cartItems}=useSelector((state)=>state.cart)
     console.log("--cartItems------",cartItems)
     const [quantity,setQuantity]=useState(1);
@@ -24,13 +26,17 @@ export const Cart = () => {
                     <p>quantity</p>
                     <p>subtotal</p>
                 </div>
-                <div className="cartContainer">
-                {cartItems&&cartItems.map((crd)=><CartItemCard item={crd}/>)}
-                <div className="cartInput">
-                <button onClick={decreaseBtn}>-</button>
-                <input className="inputText1" type="number" value={quantity} readOnly ></input>
-                <button>+</button>
-                </div>
+               
+                <div className="cartContainer"> 
+                    {cartItems&&cartItems.map((crd)=><CartItemCard item={crd}/>)}
+                    <div className="cartInput">
+                        <button onClick={decreaseBtn}>-</button>
+                        <input className="inputText1" type="number" value={quantity} readOnly ></input>
+                        <button>+</button>
+                    </div>
+                <p className="cartSubtotal">
+                    {item.price*item.quantity}
+                </p>
                 </div>
              </div>
            
