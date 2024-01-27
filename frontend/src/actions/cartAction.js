@@ -24,7 +24,7 @@ try {
         }
         
     })
-    localStorage.setItem("cardItem",JSON.stringify(store.getState().cart.cartItems));
+    localStorage.setItem("cardItems",JSON.stringify(store.getState().cart.cartItems));
 } catch (error) {
     
 }
