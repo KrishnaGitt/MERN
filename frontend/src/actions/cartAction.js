@@ -5,6 +5,7 @@ import{
     REMOVE_CART_ITEM,
     SAVE_SHIPPING_INFO ,
 } from "../constanst/cartConstants"
+import store from "../store.js"
 
 export const addItemsToCart=(id,quantity)=>async(dispatch)=>{
     console.log("inside addItemsToCart")
@@ -12,7 +13,7 @@ export const addItemsToCart=(id,quantity)=>async(dispatch)=>{
 try {
     const {data}=await axios.get(`/api/v1/products/${id}`)
     console.log("dtata in productcard--->",data,"eeeeee",{data})
-    dispatch({
+    dispatch({type:  ADD_TO_CART,
         payload:{
             product:data.product._id,
             name:data.product.name,
@@ -21,8 +22,9 @@ try {
             quantity
 
         }
-
+        
     })
+    localStorage.setItem("cardItem",JSON.stringify(store.getState().cart.cartItems));
 } catch (error) {
     
 }
