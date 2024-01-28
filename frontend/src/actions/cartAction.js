@@ -29,3 +29,12 @@ try {
     
 }
 }
+
+export const removeItemFromCart=(product)=>(dispatch)=>{
+
+dispatch({
+    type:REMOVE_CART_ITEM,
+    payload:product
+})
+localStorage.setItem("cardItems",JSON.stringify(store.getState().cart.cartItems));
+}

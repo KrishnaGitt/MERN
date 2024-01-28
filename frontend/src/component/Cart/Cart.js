@@ -6,13 +6,7 @@ import { addItemsToCart } from "../../actions/cartAction";
 
 export const Cart = () => {
     const dispatch=useDispatch();
-    const item={
-        name:"krishna",
-        product:"apple",
-        price:120,
-        quantity:10,
-        stock:10
-    }
+    // const {cartItems}=useSelector((state)=>state.cart)
     const [subTotal,setSubTotal]=useState(0);
     const {cartItems}=useSelector((state)=>state.cart)
     console.log("--cartItems------",cartItems)
@@ -27,6 +21,11 @@ export const Cart = () => {
         let newQauntity =quantity+1;
             dispatch(addItemsToCart(id,newQauntity));
     }
+    const decreaseQuantity=(id,stock,quantity)=>{
+        if(quantity<=1){return}
+        const newQauntity=quantity-1;
+        dispatch(addItemsToCart(id,newQauntity))
+    }
   return (<Fragment>
              <div className="cartPage">
                 <div className="cartHeader">
@@ -38,14 +37,14 @@ export const Cart = () => {
                
                     {cartItems&&cartItems.map((crd)=>(
                      <div className="cartContainer"> 
-                    <CartItemCard item={crd}/>
+                    <CartItemCard crd={crd}/>
                     <div className="cartInput">
-                        <button onClick={decreaseBtn}>-</button>
-                        <input className="inputText1" type="number" value={item.quantity} readOnly ></input>
-                        <button onClick={()=>increaseQuantity(item.product,item.stock,item.quantity)}>+</button>
+                        <button onClick={()=>decreaseQuantity(crd.product,crd.stock,crd.quantity)}>-</button>
+                        <input className="inputText1" type="number" value={crd.quantity} readOnly ></input>
+                        <button onClick={()=>increaseQuantity(crd.product,crd.stock,crd.quantity)}>+</button>
                     </div>
                 <p className="cartSubtotal">
-                    {item.price*item.quantity}
+                    {crd.price*crd.quantity}
                 </p>
                 </div>))}
                 <div className="cartGrossProfit">

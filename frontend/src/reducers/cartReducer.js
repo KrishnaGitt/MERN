@@ -31,6 +31,15 @@ import{
             cartItems: [...state.cartItems, item],
           };
         }
+        case REMOVE_CART_ITEM:{
+          return{
+            ...state,
+            cartItems:state.cartItems.filter((i)=>{
+              console.log("i.product--->",i.product,"action.payload.product----->",action.payload)
+              return i.product!==action.payload
+            })
+          }
+        }
       default:
         return state;
     }
