@@ -18,7 +18,7 @@ const Profile = () => {
                 <p>{user?.email}</p>
               </div>
              <div><Link to="/me/update">Edit profile</Link></div>
-             <div><Link to="/orders">My Orders</Link></div>
+             <div><Link to="/cart">My Orders</Link></div>
              <div><Link to="/password/update">Change Password</Link></div>
               </div>}
           </>

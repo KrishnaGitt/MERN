@@ -17,7 +17,7 @@ const UserOption = ({user}) => {
         console.log("hello logout");
     }
     const orders=(e)=>{
-        console.log("hello logout");
+        navigate("/cart")
     }
     const profile=(e)=>{
         console.log("hello logout");

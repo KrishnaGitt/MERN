@@ -7,10 +7,10 @@ import { addItemsToCart } from "../../actions/cartAction";
 export const Cart = () => {
     const dispatch=useDispatch();
     // const {cartItems}=useSelector((state)=>state.cart)
-    const [subTotal,setSubTotal]=useState(0);
+    let [subTotal,setSubTotal]=useState(0);
     const {cartItems}=useSelector((state)=>state.cart)
     console.log("--cartItems------",cartItems)
-    // const [quantity,setQuantity]=useState(1);
+    
     const decreaseBtn=()=>{
        
     }
@@ -26,6 +26,10 @@ export const Cart = () => {
         const newQauntity=quantity-1;
         dispatch(addItemsToCart(id,newQauntity))
     }
+    const checkOutHandler=()=>{
+        
+    }
+    let value=0;
   return (<Fragment>
              <div className="cartPage">
                 <div className="cartHeader">
@@ -51,13 +55,13 @@ export const Cart = () => {
                     <div></div>
                     <div className="cartGrossProfitBox">
                         <p>{`gross totoal`}</p>
-                        <p>{`600`}</p>
+                        <p>{cartItems.reduce((acc,item)=>acc+item.price*item.quantity,value)}</p>
                         <p></p>
                     </div>
 
                     <div></div>
                     <div className="checkOutBtn">
-                        <button>checkout</button>
+                        <button onClick={checkOutHandler}>checkout</button>
                     </div>
 
                 </div>

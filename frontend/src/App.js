@@ -30,7 +30,7 @@ function App() {
       },
     });
     
-    user && store.dispatch(getCurrentUser)
+    {user.length!=0 && store.dispatch(getCurrentUser)}
    }, []);
   
   return (
