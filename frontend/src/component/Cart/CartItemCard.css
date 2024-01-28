@@ -4,6 +4,7 @@
     height: 8vmax;
     align-items: flex-start;
     box-sizing: border-box;
+    flex-direction: column;
   }
   .CartItemCard > img {
     width: 5vmax;
