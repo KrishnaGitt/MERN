@@ -13,7 +13,6 @@ export const Products = () => {
     const dispatch=useDispatch();
     const {product}=useSelector((state)=>state.product)
     const {keyword}=useParams()
-    console.log("Products------->",keyword);
     useEffect(()=>{
       dispatch(getProduct(keyword))
     },[dispatch])

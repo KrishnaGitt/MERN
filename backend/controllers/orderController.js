@@ -31,7 +31,6 @@ exports.createOrder = async (req, res) => {
 };
 
 exports.getSingleOrder = async (req, res) => {
-  console.log("----------->>>>>", req.params);
   const order = await Order.findById(req.params).populate("user", "name email");
   if (!order) {
     throw new errorHandler(404, "Could able to find the respected order");
@@ -42,9 +41,7 @@ exports.getSingleOrder = async (req, res) => {
 };
 
 exports.getMyOder = async (req, res) => {
-  console.log("----------->>>>>", req.user.id);
   const order = await Order.findById({ user: req.user.id });
-  console.log("----------->>>>>>", order);
   if (!order) {
     throw new errorHandler(404, "Could able to find the respected order");
   }
@@ -77,7 +74,6 @@ exports.getAllOrders = async (req, res) => {
 // Update order by admin-----------
 
 exports.updateOrder = async (req, res) => {
-  console.log("----------->>>>>", req.params);
   const orders = await Order.findById(req.params);
   orders.orderItem.forEach(async (item) => {
     await updateStock(item.product, item.quantity);
@@ -96,12 +92,10 @@ exports.updateOrder = async (req, res) => {
 };
 
 exports.deleteOrder = async (req, res) => {
-  console.log("----------->>>>>", req.params);
   const orders = await Order.findById(req.params);
   if (!orders) {
     throw new errorHandler(404, "Could able to find the respected order");
   }
-  console.log("-------------->>>>>>>>>",orders)
   const order = await orders.deleteOne(req.params);
   res
     .status(200)

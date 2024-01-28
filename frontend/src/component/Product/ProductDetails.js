@@ -14,9 +14,6 @@ export const ProductDetails = () => {
     useEffect(()=>{
         dispatch(getProductDetail(id))
     },[dispatch])
-    console.log("productDetail---",productDetail);
-    console.log("productDetail.review-------",productDetail.review)
-
     const increaseProductQuantity=()=>{
       if(productDetail?.stock<=quantity){ return}
         quantity=quantity+1
@@ -30,7 +27,7 @@ export const ProductDetails = () => {
     }
 
     const addItemToCart=()=>{
-      console.log("product Details--------->>>",productDetail._id,quantity)
+
       dispatch(addItemsToCart(productDetail._id,quantity))
 
     }

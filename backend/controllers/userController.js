@@ -11,7 +11,6 @@ exports.registorUser= async(req,resp)=>{
       $or:[{name},{email}]
     })
     if(userExist){
-      console.log("--------",userExist.name)
       throw new errorHandler(400,"Username or email id Existed Please try with some other user")
     }
     const user= await User.create(req.body)
@@ -24,7 +23,6 @@ exports.registorUser= async(req,resp)=>{
           new responseHandler(200,{createdUserInDB,token},"User Registor Sucessfully")
       )
   } catch (error) {
-    console.log("eeee",error)
   }
 }
 
@@ -64,7 +62,6 @@ exports.logoutUser=async(req,res)=>{
 }
 
 exports.forgotPassword=async (req,res)=>{
-  console.log("insdie forgot");
   const {email}=req.body
   const user=await User.findOne({email})
 if(!user){
@@ -95,7 +92,6 @@ try {
 }
 
 exports.getUserDetails=async (req,res)=>{
-  console.log("USer details",req.user.id)
   const user=await User.findById(req.user.id)
   if(!user){
     throw new errorHandler(404,"User is not found")
@@ -138,7 +134,6 @@ exports.changeUserProfile=async(req,res)=>{
  const id=req.user.id;
  const {name,email}=req.body;
  const existedUser=await User.findById(id);
- console.log("---getCurrentUser--->",existedUser,name,email)
  if(!existedUser){
   throw new errorHandler(204,"Not Able to change the user name or password ")
  }

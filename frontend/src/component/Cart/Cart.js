@@ -3,19 +3,14 @@ import "./Cart.css";
 import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart } from "../../actions/cartAction";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
+    const navigate = useNavigate();
     const dispatch=useDispatch();
     // const {cartItems}=useSelector((state)=>state.cart)
     let [subTotal,setSubTotal]=useState(0);
     const {cartItems}=useSelector((state)=>state.cart)
-    console.log("--cartItems------",cartItems)
-    
-    const decreaseBtn=()=>{
-       
-    }
-    cartItems.map((crd)=>console.log("-------vairable"))
-
     const increaseQuantity=(id,stock,quantity)=>{
         if(stock<=quantity){return}
         let newQauntity =quantity+1;
@@ -27,7 +22,7 @@ export const Cart = () => {
         dispatch(addItemsToCart(id,newQauntity))
     }
     const checkOutHandler=()=>{
-        
+        navigate("/account")
     }
     let value=0;
   return (<Fragment>

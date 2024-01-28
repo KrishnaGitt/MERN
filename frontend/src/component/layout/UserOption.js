@@ -9,18 +9,15 @@ const UserOption = ({user}) => {
     const navigate = useNavigate();
     const dispatch=useDispatch();
     const logout=(e)=>{
-        console.log("loggout user is callled")
         dispatch(logOutUser)
     }
 
     const dashboard=(e)=>{
-        console.log("hello logout");
     }
     const orders=(e)=>{
         navigate("/cart")
     }
     const profile=(e)=>{
-        console.log("hello logout");
         navigate("/account")
     }
   return (

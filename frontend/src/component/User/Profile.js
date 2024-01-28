@@ -3,7 +3,6 @@ import {  useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 const Profile = () => {
   const {user}=useSelector((state)=>state.login)
-  console.log("--------inside profile function---",user)
   return (<>
             {user&&<div className='profileContainer'>
               <div>

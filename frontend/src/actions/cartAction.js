@@ -12,7 +12,6 @@ export const addItemsToCart=(id,quantity)=>async(dispatch)=>{
 
 try {
     const {data}=await axios.get(`/api/v1/products/${id}`)
-    console.log("dtata in productcard--->",data,"eeeeee",{data})
     dispatch({type:  ADD_TO_CART,
         payload:{
             product:data.product._id,

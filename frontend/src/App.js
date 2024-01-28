@@ -21,16 +21,18 @@ import myOders from "./component/Order/myOders.js"
 import Cart from "./component/Cart/Cart.js"
 
 function App() {
-  const {user}=useSelector((state)=>state.login)
-  console.log("inside app .js------------")
+  const {user,isAuthenticated}=useSelector((state)=>state.login)
+  console.log("isAuthenticated------------",isAuthenticated)
   React.useEffect(() => {
  WebFont.load({
       google: {
         families: ["Roboto"],
       },
     });
+    if(isAuthenticated){
+      {user.length!=0 && store.dispatch(getCurrentUser)}
+    }
     
-    {user.length!=0 && store.dispatch(getCurrentUser)}
    }, []);
   
   return (

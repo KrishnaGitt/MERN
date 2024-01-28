@@ -31,13 +31,16 @@ switch(action.type){
     case LOAD_USER_SUCCESS:
 
         return{
-            user:action.payload.data
+            user:action.payload.data,
+            isAuthenticated: true,
         }
     case LOGIN_FAIL:
     case REGISTER_USER_FAIL:
+    case LOAD_USER_FAIL:
         return{
             user:{},
-            error:action.payload
+            error:action.payload,
+            isAuthenticated: false,
         }
     case  LOAD_USER_FAIL:
         return{

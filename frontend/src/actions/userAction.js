@@ -31,7 +31,6 @@ export const changeUserPassword=(newPassword,confirmPassword)=>async(dispatch)=>
       type:UPDATE_PASSWORD_REQUEST
     })
     const {data}=await axios.post("/api/v1/user/changePassword",{newPassword,confirmPassword})
-    console.log("----------data------",data);
     dispatch({
       type:UPDATE_PASSWORD_SUCCESS,
       payload:data
@@ -53,7 +52,6 @@ export const getUserLogin =(email,password)=> async(dispatch) => {
   })
 try { 
     const {data} =await axios.post("/api/v1/user/loginUser",{email,password});
-     console.log("----------data---",data)
     dispatch({
         type:LOGIN_SUCCESS,
         payload:data
@@ -73,7 +71,6 @@ export const registerUser =({name,email ,password})=> async(dispatch) => {
   })
 try { 
     const {data} =await axios.post("/api/v1/user/registorUser",{name,email,password});
-      console.log("---------data--",data);
     dispatch({
         type:REGISTER_USER_SUCCESS,
         payload:data
@@ -124,7 +121,6 @@ export const updateUser=(name,email)=>async(dispatch)=>{
       type:UPDATE_PROFILE_REQUEST
     })
     const {data}= await axios.put("/api/v1/user/changeUserProfile",{name,email})
-   console.log("inside user action------->",name,email)
    dispatch({
     type:UPDATE_PROFILE_SUCCESS,
     payload:data
