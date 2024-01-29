@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./Shipping.css";
 import { Country, State } from "country-state-city";
+import{addShipping} from "../../actions/cartAction.js"
+import { useDispatch } from "react-redux";
 
 const Shipping = () => {
+  const dispatch=useDispatch();
   const shippingSubmit = (e) => {
     e.preventDefault();
     console.log("shipping submit");
+    dispatch(addShipping(shipping));
   };
   const [shipping, setShipping] = useState({
     address: "",
@@ -13,9 +17,8 @@ const Shipping = () => {
     pin: "",
     number:"",
     country:"India",
-    state:""
+    state:"uttarPradesh"
   });
-  const ss="india";
   const { address, city, pin ,number,country,state} = shipping;
   const onShipping = (e) => {
     const newShipping = { ...shipping };
@@ -68,7 +71,7 @@ const Shipping = () => {
               onChange={onShipping}
             />
           </div>
-          <div>
+          {/* <div>
               <select
                 value={country}
                 required
@@ -78,8 +81,8 @@ const Shipping = () => {
                   <option key={item.isoCode} value={item.isoCode}> {item.name}</option>
                 ))}
               </select>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
               <select
                 value={state}
                 required
@@ -89,7 +92,13 @@ const Shipping = () => {
                   <option key={item.isoCode} value={item.isoCode}> {item.name}</option>
                 ))}
               </select>
-          </div>
+          </div> */}
+          <input
+          type="submit"
+          value="continue"
+          className="shippingBtn"
+          disabled={state?false:true}
+          />
         </form>
       </div>
     </div>
