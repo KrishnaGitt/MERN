@@ -7,6 +7,7 @@ import{
 } from "../constanst/cartConstants"
 import store from "../store.js"
 
+
 export const addItemsToCart=(id,quantity)=>async(dispatch)=>{
     console.log("inside addItemsToCart")
 
@@ -39,9 +40,11 @@ localStorage.setItem("cardItems",JSON.stringify(store.getState().cart.cartItems)
 }
 
 export const addShipping=(data)=>(dispatch)=>{
+    
     dispatch({
         type:SAVE_SHIPPING_INFO,
         payload:data
     })
     localStorage.setItem("shippInfo",JSON.stringify(store.getState().cart.shippInfo))
+   
 }

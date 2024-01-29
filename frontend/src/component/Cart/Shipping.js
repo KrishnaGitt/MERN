@@ -3,13 +3,16 @@ import "./Shipping.css";
 import { Country, State } from "country-state-city";
 import{addShipping} from "../../actions/cartAction.js"
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
+  const navigate = useNavigate();
   const dispatch=useDispatch();
   const shippingSubmit = (e) => {
     e.preventDefault();
     console.log("shipping submit");
     dispatch(addShipping(shipping));
+    navigate("/orders/confirmOrder")
   };
   const [shipping, setShipping] = useState({
     address: "",

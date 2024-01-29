@@ -20,6 +20,7 @@ import UpdateProfile from "./component/User/UpdateProfile.js"
 import myOders from "./component/Order/myOders.js"
 import Cart from "./component/Cart/Cart.js"
 import Shipping from "./component/Cart/Shipping.js";
+import ComfirmOrder from "./component/Cart/ComfirmOrder.js";
 
 function App() {
   const {user,isAuthenticated}=useSelector((state)=>state.login)
@@ -54,6 +55,7 @@ function App() {
         <Route   path="/orders" Component={myOders}/>
         <Route   path="/cart" Component={Cart}/>
         <Route   path="/shipping" Component={Shipping}/>
+        <Route   path="/orders/confirmOrder" Component={ComfirmOrder}/>
       </Routes>
       <Footer />
     </Router>
