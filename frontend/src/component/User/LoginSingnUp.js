@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getUserLogin,registerUser} from "../../actions/userAction"
 
 const LoginSingnUp = () => {
+  const {error,isAuthenticated}=useSelector((state)=>state.login)
   const navigate = useNavigate();
   const dispatch=useDispatch();
-  const {error}=useSelector((state)=>state.login)
+  
 
+  console.log("inside login page---->",isAuthenticated)
     const[loginEmail,setLoginEmail]=useState('')
     const[loginPassword,setLoginPassword]=useState('')
 
@@ -24,12 +26,14 @@ const LoginSingnUp = () => {
     });
 
     const {name,email,password}=user; 
+    // const redirect=location.search?location.search.split("=")[1]:location.search.split("?")[0];
     useEffect(()=>{
-      if(error){
-       alert(error)
+      if(isAuthenticated){
+        //  navigate(redirect);
       }
-      else{
-       // navigate("/account")
+      if(error){
+        alert(error)
+      
       }
     },[error,navigate])
     const loginTab=useRef(null);

@@ -37,3 +37,14 @@ dispatch({
 })
 localStorage.setItem("cardItems",JSON.stringify(store.getState().cart.cartItems));
 }
+
+export const addShipping=()=>(dispatch)=>{
+   const  data={
+        name:"krishna"
+    }
+    dispatch({
+        type:SAVE_SHIPPING_INFO,
+        payload:data
+    })
+    localStorage.setItem("shippInfo",JSON.stringify(store.getState().cart.shippInfo))
+}

@@ -22,7 +22,7 @@ export const Cart = () => {
         dispatch(addItemsToCart(id,newQauntity))
     }
     const checkOutHandler=()=>{
-        navigate("/account")
+        navigate("/shipping")
     }
     let value=0;
   return (<Fragment>

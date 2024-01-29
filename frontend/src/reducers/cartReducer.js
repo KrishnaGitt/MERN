@@ -7,7 +7,7 @@ import{
 
   
   export const cartReducer = (
-    state = { cartItems: [], },
+    state = { cartItems: [], shippInfo:{}},
     action
   ) => {
     switch (action.type) {
@@ -40,6 +40,11 @@ import{
             })
           }
         }
+        case SAVE_SHIPPING_INFO:
+          return{
+            ...state,
+            shippInfo:action.payload
+          }
       default:
         return state;
     }

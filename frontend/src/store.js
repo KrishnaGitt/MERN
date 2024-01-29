@@ -18,7 +18,11 @@ const reducer=combineReducers({
 let initialstate={
     cart:{
         cartItems:localStorage.getItem("cardItems")?JSON.parse(localStorage.getItem("cardItems")):[]
+    },
+    shippInfo:{
+        shippInfo:localStorage.getItem("shippInfo")?JSON.parse(localStorage.getItem("shippInfo")):{}
     }
+
 }
 
 

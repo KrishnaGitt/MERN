@@ -19,6 +19,7 @@ import UpdatePassword from "./component/User/UpdatePassword.js"
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import myOders from "./component/Order/myOders.js"
 import Cart from "./component/Cart/Cart.js"
+import Shipping from "./component/Cart/Shipping.js";
 
 function App() {
   const {user,isAuthenticated}=useSelector((state)=>state.login)
@@ -29,9 +30,9 @@ function App() {
         families: ["Roboto"],
       },
     });
-    if(isAuthenticated){
-      {user.length!=0 && store.dispatch(getCurrentUser)}
-    }
+ 
+     {user.length!=0 && store.dispatch(getCurrentUser)}
+    
     
    }, []);
   
@@ -52,6 +53,7 @@ function App() {
         <Route   path="/me/update" Component={UpdateProfile}/>
         <Route   path="/orders" Component={myOders}/>
         <Route   path="/cart" Component={Cart}/>
+        <Route   path="/shipping" Component={Shipping}/>
       </Routes>
       <Footer />
     </Router>
