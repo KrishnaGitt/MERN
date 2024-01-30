@@ -10,6 +10,13 @@ const ComfirmOrder = () => {
   console.log(cartItems,shippInfo,user)
   const address = `${shippInfo.address}, ${shippInfo.city}, ${shippInfo.state}, ${shippInfo.pin}, ${shippInfo.country}`;
   console.log("address---------->",address)
+  const subTotal=cartItems.reduce((acc,item)=>acc+item.price*item.quantity,0)
+  const shippingcharge=subTotal>1000?0:100;
+  const tax= subTotal*0.18;
+  const totalPrice=subTotal+shippingcharge+tax;
+  const proceedToPayment=()=>{
+    console.log("hello");
+  }
   return (
     <div className='confirmOrderPage'>
       <div>
@@ -53,6 +60,30 @@ const ComfirmOrder = () => {
 
           </div>
         </div>
+      </div>
+      <div>
+          <div className='orderSummary'>
+            <div>
+              <div>
+                <p>Subtotal:</p>
+                <span>{subTotal}</span>
+              </div>
+              <div>
+                <p>shippingcharge:</p>
+                <span>{shippingcharge}</span>
+              </div>
+              <div>
+                <p>tax:</p>
+                <span>{tax}</span>
+              </div>
+              <div>
+                <p>totalPrice:</p>
+                <span>{totalPrice}</span>
+              </div>
+              <button onClick={proceedToPayment}>Proceed To Payment</button>
+            </div>
+
+          </div>
       </div>
     </div>
   )

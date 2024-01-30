@@ -19,8 +19,8 @@ const Shipping = () => {
     city: "",
     pin: "",
     number:"",
-    country:"India",
-    state:"uttarPradesh"
+    country:"",
+    state:""
   });
   const { address, city, pin ,number,country,state} = shipping;
   const onShipping = (e) => {
@@ -74,28 +74,30 @@ const Shipping = () => {
               onChange={onShipping}
             />
           </div>
-          {/* <div>
+          <div>
               <select
                 value={country}
                 required
+                name="country"
                 onChange={onShipping}>
                 <option value="">Country</option>
                 {Country.getAllCountries().map((item)=>(
                   <option key={item.isoCode} value={item.isoCode}> {item.name}</option>
                 ))}
               </select>
-          </div> */}
-          {/* <div>
+          </div>
+          <div>
               <select
                 value={state}
                 required
+                name="state"
                 onChange={onShipping}>
                 <option value="">State</option>
                 { country&& State.getStatesOfCountry(country).map((item)=>(
                   <option key={item.isoCode} value={item.isoCode}> {item.name}</option>
                 ))}
               </select>
-          </div> */}
+          </div>
           <input
           type="submit"
           value="continue"
