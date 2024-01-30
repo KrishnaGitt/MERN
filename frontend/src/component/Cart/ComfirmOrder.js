@@ -1,10 +1,12 @@
 import React from 'react'
 import "./ConfirmOrder.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch ,useSelector} from "react-redux";
 
 
+
 const ComfirmOrder = () => {
+  const navigate=useNavigate();
   const {cartItems,shippInfo}=useSelector((state)=>state.cart);
   const {user,isAuthenticated}=useSelector((state)=>state.login);
   console.log(cartItems,shippInfo,user)
@@ -16,6 +18,8 @@ const ComfirmOrder = () => {
   const totalPrice=subTotal+shippingcharge+tax;
   const proceedToPayment=()=>{
     console.log("hello");
+    navigate("/process/payment")
+
   }
   return (
     <div className='confirmOrderPage'>
