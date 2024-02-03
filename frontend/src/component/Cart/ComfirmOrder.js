@@ -17,9 +17,14 @@ const ComfirmOrder = () => {
   const tax= subTotal*0.18;
   const totalPrice=subTotal+shippingcharge+tax;
   const proceedToPayment=()=>{
-    console.log("hello");
+      const data = {
+        subTotal,
+        shippingcharge,
+        tax,
+        totalPrice,
+      };
+      sessionStorage.setItem("orderInfo", JSON.stringify(data));
     navigate("/process/payment")
-
   }
   return (
     <div className='confirmOrderPage'>

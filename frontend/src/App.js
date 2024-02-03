@@ -51,7 +51,7 @@ function App() {
       },
     });
  
-    //  {user.length!=0 && store.dispatch(getCurrentUser)}
+     {user.length!=0 && store.dispatch(getCurrentUser)}
     
 
     getStripeKey();
@@ -60,7 +60,7 @@ function App() {
   return (
     <Router>
       <Header />
-      {/* {user?.name?<UserOption user={user}></UserOption>:<></>} */}
+      {user?.name?<UserOption user={user}></UserOption>:<></>}
       <Routes>
         <Route   path="/" Component={Home} />
         <Route   path="/contact" Component={Contact} />

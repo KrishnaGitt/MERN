@@ -11,17 +11,31 @@ import {
 
 import axios from "axios";
 import "./Payment.css"
+import {createOrder} from "../../actions/orderAction.js"
 
 const Payment = () => {
-  const dispatch = useDispatch();
-  // const stripe = useStripe();
+   // const stripe = useStripe();
   // const elements = useElements();
   // const payBtn = useRef(null);
   const[a,seta]=useState(10);
+
+  const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+  const dispatch = useDispatch();
+  const {cartItems,shippInfo}=useSelector((state)=>state.cart);
+  const order={
+    // shippInfo,
+    // orderItem:cartItems,
+    // itemPrice:orderInfo.subTotal,
+    // taxPrice:orderInfo.tax,
+    // totalPrice:orderInfo.totalPrice,
+    // ShippingPrice:orderInfo.shippingcharge
+  }
+  
   const submitHandler=(e)=>{
       e.preventDefault();
       console.log("hello");
   }
+  dispatch(createOrder(order))
   return (
     
     <Fragment>
