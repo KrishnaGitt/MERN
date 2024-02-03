@@ -1,7 +1,7 @@
 import Header from "./component/layout/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
 import Search from"./component/Product/Search.js"
@@ -22,10 +22,20 @@ import Cart from "./component/Cart/Cart.js"
 import Shipping from "./component/Cart/Shipping.js";
 import ComfirmOrder from "./component/Cart/ComfirmOrder.js";
 import Payment from "./component/Cart/Payment.js";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const {user,isAuthenticated}=useSelector((state)=>state.login)
   console.log("isAuthenticated------------",isAuthenticated)
+  const[stripeKey,setStripeKey]=useState("")
+  
+  const getStripeKey=async()=>{
+    const {data}=await axios.get("/api/v1/stripekey");
+    setStripeKey(data.stripekey);
+  }
+
   React.useEffect(() => {
  WebFont.load({
       google: {
@@ -35,7 +45,8 @@ function App() {
  
      {user.length!=0 && store.dispatch(getCurrentUser)}
     
-    
+
+    getStripeKey();
    }, []);
   
   return (

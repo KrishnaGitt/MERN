@@ -1,9 +1,10 @@
 const express=require("express");
 
-const {addPayment}=require("../controllers/paymentcontroller.js")
+const {addPayment,sendStripeKey}=require("../controllers/paymentcontroller.js")
 const router=express.Router();
 
-router.route("/payment",addPayment)
+router.route("/payment").post(addPayment);
+router.route("/stripekey").get(sendStripeKey);
 
 
 module.exports=router

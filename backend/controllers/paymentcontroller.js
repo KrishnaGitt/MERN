@@ -10,3 +10,9 @@ exports.addPayment=async(req,res)=>{
         sucess:true
     })
 } 
+
+exports.sendStripeKey=(req,res,next)=>{
+    res.status(200).json({
+        stripekey:"pk_test_51OeFXmSAs5OPs1h9h0AZNPygslJyDKgm8BEes2ANI4t8hTSYt1NW4h97HGFKW95myY9lv69c5wSvs0nvgoCdhzgq00VnZFhXGZ"
+    })
+}
