@@ -25,6 +25,13 @@ import Payment from "./component/Cart/Payment.js";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import {
+  CardNumberElement,
+  CardCvcElement,
+  CardExpiryElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 
 function App() {
   const {user,isAuthenticated}=useSelector((state)=>state.login)
@@ -33,6 +40,7 @@ function App() {
   
   const getStripeKey=async()=>{
     const {data}=await axios.get("/api/v1/stripekey");
+    console.log("-----stripe key",data)
     setStripeKey(data.stripekey);
   }
 
@@ -43,7 +51,7 @@ function App() {
       },
     });
  
-     {user.length!=0 && store.dispatch(getCurrentUser)}
+    //  {user.length!=0 && store.dispatch(getCurrentUser)}
     
 
     getStripeKey();
@@ -52,7 +60,7 @@ function App() {
   return (
     <Router>
       <Header />
-      {user?.name?<UserOption user={user}></UserOption>:<></>}
+      {/* {user?.name?<UserOption user={user}></UserOption>:<></>} */}
       <Routes>
         <Route   path="/" Component={Home} />
         <Route   path="/contact" Component={Contact} />
@@ -68,7 +76,12 @@ function App() {
         <Route   path="/cart" Component={Cart}/>
         <Route   path="/shipping" Component={Shipping}/>
         <Route   path="/orders/confirmOrder" Component={ComfirmOrder}/>
-        <Route   path="/process/payment" Component={Payment}/>
+        {/* <Elements stripe={loadStripe("pk_test_51OeFXmSAs5OPs1h9h0AZNPygslJyDKgm8BEes2ANI4t8hTSYt1NW4h97HGFKW95myY9lv69c5wSvs0nvgoCdhzgq00VnZFhXGZ")}>
+             <Route   path="/process/payment" Component={Payment}/>
+        </Elements> */}
+          <Route   path="/process/payment" Component={Payment}/>
+     
+      
       </Routes>
       <Footer />
     </Router>
