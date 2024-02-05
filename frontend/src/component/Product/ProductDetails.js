@@ -54,7 +54,7 @@ export const ProductDetails = () => {
             <input value={quantity} readOnly type="number"></input>
             <button onClick={increaseProductQuantity}>+</button>
           </div>
-          <button onClick={addItemToCart}>add to card</button>   
+        <button onClick={addItemToCart}>  <Link to="/cart">add to card</Link>   </button>
       </div>
       <p>Status
         <b className={productDetail.stock<1?"red":"green"}>{productDetail.stock}</b>
