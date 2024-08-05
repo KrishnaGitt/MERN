@@ -12,9 +12,9 @@ const Home=()=>{
     const dispatch=useDispatch()
     const {loading,product}=useSelector((state)=>state.product)
     const {user}=useSelector((state)=>state.login)
-    useEffect(()=>{
-        dispatch(getProduct())
-    },[dispatch])
+    // useEffect(()=>{
+    //     dispatch(getProduct())
+    // },[dispatch])
     return(<>
         {loading?<Loader/>: <>  
         <MetaData title="Ecommerce"/>

@@ -54,7 +54,7 @@ function App() {
     //  {user.length!=0 && store.dispatch(getCurrentUser)}
     
 
-    getStripeKey();
+   
    }, []);
   
   return (

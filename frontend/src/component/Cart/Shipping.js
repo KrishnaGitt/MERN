@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Shipping.css";
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Country, State } from "country-state-city";
 import{addShipping} from "../../actions/cartAction.js"
 import { useDispatch } from "react-redux";
@@ -8,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 const Shipping = () => {
   const navigate = useNavigate();
   const dispatch=useDispatch();
+  const location=useLocation();
+  console.log("lo------->",location);
   const shippingSubmit = (e) => {
     e.preventDefault();
     console.log("shipping submit");
